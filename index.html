@@ -263,7 +263,7 @@ $("#freshwaterbutton").click(function(event) {
 <div id="mapid" style="width: 1000px; height: 500px; z-index: 90; text-align: center;"></div>
 <script>
 
-var mymap = L.map('mapid').setView([30.505, 0.09], 2);
+var mymap = L.map('mapid').setView([38.9085, -77.2405], 9);
 mymap.scrollWheelZoom.disable();
 mymap.dragging.disable();
 mymap.zoomControl.remove();mymap.touchZoom.disable();
@@ -272,9 +272,9 @@ mymap.boxZoom.disable();
 mymap.keyboard.disable(); 
 var oms = new OverlappingMarkerSpiderfier(mymap);
 
-L.tileLayer('https://api.mapbox.com/styles/v1/rslux/cj21r8qyp00002qmppuj0ivt6/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnNsdXgiLCJhIjoiY2oyMXFzd25jMDAwdDJ3cWFvYmk3NzYzaCJ9.b0CboYbGfrZTa1xApDdE5Q', {
+L.tileLayer('https://api.mapbox.com/styles/v1/rs-inquiry/cj5o0ovlm4uwx2rmearefrc9c.html?title=true&access_token=pk.eyJ1IjoicnMtaW5xdWlyeSIsImEiOiJjajVvMGxvd3kzNHhpMzNuejYyNndnY3plIn0.8-K_FThyWALIIPjWtJwULw#13.3/44.969775/-93.246630/0', {
     maxZoom: 18,
-    attribution: 'ESRI ArcGIS',
+    attribution: 'Inquiry',
     id: 'mapbox.streets'
   }).addTo(mymap);
 //Notwithstanding ACAO/CORS, this executed

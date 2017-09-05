@@ -10,16 +10,9 @@
 
 
 <!-- Task list
-1) Draw in data, construct data object
-  CSV draw
-  Interpret
-2) render bars, map
-  Pull logos
-  add to nav bar
-  render
-3) render markers
+1) Re-center/zoom button
+4) Popup includes Type and Rep if available
 
-4) respond to events
 
 -->
 
@@ -77,9 +70,9 @@ button:active {
 }
 
 section.elembuttonclass button {
-  color: #fff;
-  background-color: #a3276c;
-  text-shadow: -1px 1px #8A215B;
+  color: #6967ac;
+  background-color: #dfcba8;
+
   border: none;
   float: left;
   width: 200px;
@@ -87,9 +80,9 @@ section.elembuttonclass button {
 }
 
 section.middlebuttonclass button {
-  color: #fff;
-  background-color: #4bb5c5;
-  text-shadow: -1px 1px #419DAB;
+  color: #6967ac;
+  background-color: #dfcba8;
+/*  text-shadow: -1px 1px #419DAB; */
   border: none;
   float: left;
   width: 200px;
@@ -97,9 +90,9 @@ section.middlebuttonclass button {
 }
 
 section.highbuttonclass button {
-  color: #fff;
-  background-color: #2c6733;
-  text-shadow: -1px 1px #214D26;
+  color: #6967ac;
+  background-color: #dfcba8;
+
   border: none;
   float: left;
   width: 200px;
@@ -107,9 +100,9 @@ section.highbuttonclass button {
 }
 
 section.alternbuttonclass button {
-  color: #fff;
-  background-color: #cbbd2c;
-  text-shadow: -1px 1px #B3A627;
+  color: #6967ac;
+  background-color: #dfcba8;
+
   border: none;
   float: left;
   width: 200px;
@@ -130,7 +123,7 @@ section.alternbuttonclass button {
   <button id="highbutton" href="#">High Schools</button>
 </section>
 <section class="alternbuttonclass" >
-  <button id="alternbutton" href="#">Alternative Schools</button>
+  <button id="alternbutton" href="#">Other FCPS Buildings</button>
 </section>
 <BR><BR>
 <script>
@@ -138,11 +131,11 @@ $("#elembutton").click(function(event) {
     event.preventDefault();
     if(mymap.hasLayer(elemlayer)) {
         $(this).removeClass('selected');
-        $('#elembutton').css('background-color', '#8A215B'); ///toggles background colour on select/deselect
+        $('#elembutton').css('background-color', '#625f5a'); ///toggles background colour on select/deselect
         mymap.removeLayer(elemlayer);
     } else {
         mymap.addLayer(elemlayer);        
-        $('#elembutton').css('background-color', '#a3276c'); ///toggles background colour on select/deselect
+        $('#elembutton').css('background-color', '#dfcba8'); ///toggles background colour on select/deselect
         $(this).addClass('selected');
    }
 });
@@ -150,11 +143,11 @@ $("#middlebutton").click(function(event) {
     event.preventDefault();
     if(mymap.hasLayer(middlelayer)) {
         $(this).removeClass('selected');
-        $('#middlebutton').css('background-color', '#378692'); ///toggles background colour on select/deselect
+        $('#middlebutton').css('background-color', '#625f5a'); ///toggles background colour on select/deselect
         mymap.removeLayer(middlelayer);
     } else {
         mymap.addLayer(middlelayer);        
-        $('#middlebutton').css('background-color', '#4bb5c5'); ///toggles background colour on select/deselect
+        $('#middlebutton').css('background-color', '#dfcba8'); ///toggles background colour on select/deselect
         $(this).addClass('selected');
    }
 });
@@ -162,11 +155,11 @@ $("#highbutton").click(function(event) {
     event.preventDefault();
     if(mymap.hasLayer(highlayer)) {
         $(this).removeClass('selected');
-        $('#highbutton').css('background-color', '#163319'); ///toggles background colour on select/deselect
+        $('#highbutton').css('background-color', '#625f5a'); ///toggles background colour on select/deselect
         mymap.removeLayer(highlayer);
     } else {
         mymap.addLayer(highlayer);        
-        $('#highbutton').css('background-color', '#2c6733'); ///toggles background colour on select/deselect
+        $('#highbutton').css('background-color', '#dfcba8'); ///toggles background colour on select/deselect
         $(this).addClass('selected');
    }
 });
@@ -174,11 +167,11 @@ $("#alternbutton").click(function(event) {
     event.preventDefault();
     if(mymap.hasLayer(alternlayer)) {
         $(this).removeClass('selected');
-        $('#alternbutton').css('background-color', '#9A8E22'); ///toggles background colour on select/deselect
+        $('#alternbutton').css('background-color', '#625f5a'); ///toggles background colour on select/deselect
         mymap.removeLayer(alternlayer);
     } else {
         mymap.addLayer(alternlayer);        
-        $('#alternbutton').css('background-color', '#cbbd2c'); ///toggles background colour on select/deselect
+        $('#alternbutton').css('background-color', '#dfcba8'); ///toggles background colour on select/deselect
         $(this).addClass('selected');
    }
 });
@@ -189,10 +182,10 @@ $("#alternbutton").click(function(event) {
 <div id="mapid" style="width: 800px; height: 900px; z-index: 90; text-align: center;"></div>
 <script>
 
-var mymap = L.map('mapid').setView([38.85, -77.3], 11);
+var mymap = L.map('mapid').setView([38.85, -77.3], 11.3);
 mymap.scrollWheelZoom.disable();
-mymap.dragging.disable();
-mymap.zoomControl.remove();mymap.touchZoom.disable();
+//mymap.dragging.disable();
+//mymap.zoomControl.remove();mymap.touchZoom.disable();
 mymap.doubleClickZoom.disable();
 mymap.boxZoom.disable();
 mymap.keyboard.disable(); 
@@ -201,7 +194,7 @@ var oms = new OverlappingMarkerSpiderfier(mymap);
 L.tileLayer('https://api.mapbox.com/styles/v1/rs-inquiry/cj5o0ovlm4uwx2rmearefrc9c/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnMtaW5xdWlyeSIsImEiOiJjajVvMGxvd3kzNHhpMzNuejYyNndnY3plIn0.8-K_FThyWALIIPjWtJwULw', {
     maxZoom: 18,
     attribution: 'Inquiry',
-    id: 'mapbox.streets'
+    id: 'fairfaxcounty'
   }).addTo(mymap);
 //Notwithstanding ACAO/CORS, this executed
 
@@ -209,156 +202,28 @@ L.tileLayer('https://api.mapbox.com/styles/v1/rs-inquiry/cj5o0ovlm4uwx2rmearefrc
 //Drawing Markers
 L.MakiMarkers.accessToken = "pk.eyJ1IjoicnMtaW5xdWlyeSIsImEiOiJjajVvMGxvdHUzd3IwMnFwOHFoaXRna3RxIn0.2SthJpmLimUJJU6zl9qKiA";
 
+//FEA
+var feaicon = L.MakiMarkers.icon({icon: "f", color: "#d35c37", size:"l"})
+var marker = L.marker([38.8465625, -77.3025597], {icon: feaicon})
+              .bindPopup('<strong>Fairfax Education Association Main Office<br>'
+                    +'Phone: 703.352.7300<br>'
+                    +'Address: 3917 Old Lee Hwy, Fairfax, VA 22030<br>')
+              .addTo(mymap);
+
 //**Second** CSV parse—can this be refactored?
-//Drawing Mountains
-var elemicon = L.MakiMarkers.icon({icon: "circle", color: "#a3276c", size: "m"});
 var elemlayer = L.layerGroup().addTo(mymap);
-  
-Papa.parse("https://rahulsindc.github.io/fea-school-visits/FCPS.es.csv", {
-    download: true,
- //   header: true,
-    complete: function(results) {
-      console.log(results);
-
-$.each(results.data, function(ib, el) {
-if (ib != 0) {
-  //Name  Acronym Affiliation City  Country Website Principal Principal's Representative  URL Logo Link Location  Latitude  Longitude
-  var name = ""
-  var phone = "";
-  var address = "";
-  var latitude = "";
-  var longitude = "";
-    $.each(el, function(j, cell) {
-        if (j == 0) {name = cell};
-        if (j == 5) {phone = cell};
-        if (j == 8) {
-            address = cell;
-//            if (affiliation == "Member") {
-  //              markericon = "";
-    //          } else {
-      //          markericon = ""; //for partners
-        //      }
-            };
-        if (j == 9) {latitude = cell};
-        if (j == 10) {longitude = cell};
-  });
-
-    var marker = L.marker([latitude, longitude], {icon: elemicon})
-              .bindPopup('<strong>'+name+'<br>'
-                    +'Phone: '+phone+'<br>'
-                    +'Address: '+address+'<br>');
-  elemlayer.addLayer(marker);
-  oms.addMarker(marker);
-
-      
-   
-    }
-  });
-    }
-  });
-
-
-var middleicon = L.MakiMarkers.icon({icon: "circle", color: "#4bb5c5", size: "m"});
 var middlelayer = L.layerGroup().addTo(mymap);
-
-Papa.parse("https://rahulsindc.github.io/fea-school-visits/FCPS.ms.csv", {
-    download: true,
- //   header: true,
-    complete: function(results) {
-      console.log(results);
-
-$.each(results.data, function(ib, el) {
-if (ib != 0) {
-  //Name  Acronym Affiliation City  Country Website Principal Principal's Representative  URL Logo Link Location  Latitude  Longitude
-  var name = ""
-  var phone = "";
-  var address = "";
-  var latitude = "";
-  var longitude = "";
-    $.each(el, function(j, cell) {
-        if (j == 0) {name = cell};
-        if (j == 5) {phone = cell};
-        if (j == 8) {
-            address = cell;
-//            if (affiliation == "Member") {
-  //              markericon = "";
-    //          } else {
-      //          markericon = ""; //for partners
-        //      }
-            };
-        if (j == 9) {latitude = cell};
-        if (j == 10) {longitude = cell};
-  });
-
-    var marker = L.marker([latitude, longitude], {icon: middleicon})
-              .bindPopup('<strong>'+name+'<br>'
-                    +'Phone: '+phone+'<br>'
-                    +'Address: '+address+'<br>');
-  middlelayer.addLayer(marker);
-  oms.addMarker(marker);
-
-      
-   
-    }
-  });
-    }
-  });
-
-
-
-var highicon = L.MakiMarkers.icon({icon: "circle", color: "#2c6733", size: "m"});
 var highlayer = L.layerGroup().addTo(mymap);
-
-
-Papa.parse("https://rahulsindc.github.io/fea-school-visits/FCPS.hs.csv", {
-    download: true,
- //   header: true,
-    complete: function(results) {
-      console.log(results);
-
-$.each(results.data, function(ib, el) {
-if (ib != 0) {
-  //Name  Acronym Affiliation City  Country Website Principal Principal's Representative  URL Logo Link Location  Latitude  Longitude
-  var name = ""
-  var phone = "";
-  var address = "";
-  var latitude = "";
-  var longitude = "";
-    $.each(el, function(j, cell) {
-        if (j == 0) {name = cell};
-        if (j == 5) {phone = cell};
-        if (j == 8) {
-            address = cell;
-//            if (affiliation == "Member") {
-  //              markericon = "";
-    //          } else {
-      //          markericon = ""; //for partners
-        //      }
-            };
-        if (j == 9) {latitude = cell};
-        if (j == 10) {longitude = cell};
-  });
-
-    var marker = L.marker([latitude, longitude], {icon: highicon})
-              .bindPopup('<strong>'+name+'<br>'
-                    +'Phone: '+phone+'<br>'
-                    +'Address: '+address+'<br>');
-  highlayer.addLayer(marker);
-  oms.addMarker(marker);
-
-      
-   
-    }
-  });
-    }
-  });
-
-
-
-var alternicon = L.MakiMarkers.icon({icon: "circle", color: "#cbbd2c", size: "m"});
 var alternlayer = L.layerGroup().addTo(mymap);
 
-Papa.parse("https://rahulsindc.github.io/fea-school-visits/FCPS.other.csv", {
+
+//var middleicon = L.MakiMarkers.icon({icon: "m", color: "#5a4e4d", size: "s"});
+//var highicon = L.MakiMarkers.icon({icon: "h", color: "#7e675e", size: "s"});
+//var alternicon = L.MakiMarkers.icon({icon: "o", color: "#dda288", size: "s"});
+//var elemicon = L.MakiMarkers.icon({icon: "e", color: "#8593ae", size: "s"});
+
+  
+Papa.parse("https://rahulsindc.github.io/fea-school-visits/FCPS.all.csv", {
     download: true,
  //   header: true,
     complete: function(results) {
@@ -367,31 +232,90 @@ Papa.parse("https://rahulsindc.github.io/fea-school-visits/FCPS.other.csv", {
 $.each(results.data, function(ib, el) {
 if (ib != 0) {
   //Name  Acronym Affiliation City  Country Website Principal Principal's Representative  URL Logo Link Location  Latitude  Longitude
-  var name = ""
+  var name = "";
+  var reps = "";
+  var visitdate = "";
   var phone = "";
   var address = "";
   var latitude = "";
+  var schooltype = "";
+  var icontext = "";
   var longitude = "";
     $.each(el, function(j, cell) {
         if (j == 0) {name = cell};
-        if (j == 5) {phone = cell};
-        if (j == 8) {
-            address = cell;
-//            if (affiliation == "Member") {
-  //              markericon = "";
-    //          } else {
-      //          markericon = ""; //for partners
-        //      }
-            };
-        if (j == 9) {latitude = cell};
-        if (j == 10) {longitude = cell};
+        if (j == 1) {reps = cell};
+        if (j == 2) {visitdate = cell}; 
+        if (j == 3) {streetaddress = cell};
+        if (j == 4) {city = cell};
+        if (j == 4) {state = cell};
+        if (j == 6) {zip = cell};
+        if (j == 7) {phone = cell};
+        if (j == 8) {schooltype = cell};
+        if (j == 9) {address = cell};
+        if (j == 10) {latitude = cell};
+        if (j == 11) {longitude = cell};
+      console.log("after 'each'",latitude," ",longitude," ",name);
   });
+//date parse for icon size here
+//break by separator
+var splitdate = visitdate.split("/");
+//0 = m 1 = d 2 = yr (2 digit)
+var today = new Date();
 
-    var marker = L.marker([latitude, longitude], {icon: alternicon})
+var day = today.getDate();
+var month = today.getMonth()+1;
+var year = today.getFullYear();
+
+var visitis = "";
+//before a year, within a year, or forthcoming
+//forthcoming
+if (splitdate[2] > (year-2000)) {visitis = "forthcoming"}
+  else if ((splitdate[2] == (year-2000)) && (splitdate[1] > month)) {visitis = "forthcoming"}
+  else if ((splitdate[2] == (year-2000)) && (splitdate[1] == month) && (splitdate[0] >= day)) {visitis = "forthcoming" };
+
+if (splitdate[2] == (year-2000) &&  (splitdate[1] == month) && (splitdate[0] < day)) {visitis = "pastyear"}
+  else if ((splitdate[2] == (year-2000)) && (splitdate[1] < month)) {visitis = "pastyear"}
+  else if ((splitdate[2] < (year-2000)) && (splitdate[1] > month)) {visitis = "pastyear" }
+  else if ((splitdate[2] < (year-2000)) && (splitdate[1] == month) && (splitdate[0] >= day)) {visitis = "pastyear" };
+
+if ((visitis != "forthcoming") && (visitis != "pastyear")) {visitis = "old"};
+
+// if type then icon color/letter here
+if (visitis == "forthcoming") {
+    iconcolor = "#df004e";
+    iconsize = "l";
+  };
+if (visitis == "pastyear") {
+    iconcolor = "59b3dc";
+    iconsize = "m";
+  };
+if (visitis == "old") {
+    iconcolor = "183385";
+    iconsize = "s";
+  };
+
+if (schooltype == "Elementary School") {icontext="e"};
+if (schooltype == "Middle School") {icontext="m"};
+if (schooltype == "High School") {icontext="h"};
+if ((schooltype == "Center") || (schooltype == "Administration Building") || (schooltype == "Alternative School")) {icontext="o"};
+
+//assemble icon here
+var thisicon = L.MakiMarkers.icon({icon: icontext, color: iconcolor, size: iconsize});
+
+
+//assemble marker here
+    var marker = L.marker([latitude, longitude], {icon: thisicon})
               .bindPopup('<strong>'+name+'<br>'
                     +'Phone: '+phone+'<br>'
                     +'Address: '+address+'<br>');
-  alternlayer.addLayer(marker);
+
+console.log(latitude," ",longitude," ",name);
+//layer if statements              
+if (icontext == "e") { elemlayer.addLayer(marker) };
+if (icontext == "m") { middlelayer.addLayer(marker) };
+if (icontext == "h") { highlayer.addLayer(marker) };
+if (icontext == "o") { alternlayer.addLayer(marker) };
+
   oms.addMarker(marker);
 
       
@@ -400,8 +324,10 @@ if (ib != 0) {
   });
     }
   });
-   
 
+
+   
+console.log('test message');
 
 </script>
 

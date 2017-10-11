@@ -281,7 +281,8 @@ if (splitdate[2] == (year-2000) &&  (splitdate[0] == month) && (splitdate[1] < d
 
 if ((visitis != "forthcoming") && (visitis != "pastyear")) {visitis = "old"};
 
-if (visitdate != "") {visitinfo = "Last Visited: "+splitdate[0]+"/"+splitdate[1]+"/"+splitdate[2]};
+if ((visitis != "forthcoming") && (visitdate != "") {visitinfo = "Last Visited: "+splitdate[0]+"/"+splitdate[1]+"/"+splitdate[2]};
+if ((visitis == "forthcoming") && (visitdate != "") {visitinfo = "Next Visit: "+splitdate[0]+"/"+splitdate[1]+"/"+splitdate[2]};
   
 // if type then icon color/letter here
 if (visitis == "forthcoming") {

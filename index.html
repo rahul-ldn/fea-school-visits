@@ -267,6 +267,7 @@ var month = today.getMonth()+1;
 var year = today.getFullYear();
 
 var visitis = "";
+var visitinfo = "";
 //before a year, within a year, or forthcoming
 //forthcoming
 if (splitdate[2] > (year-2000)) {visitis = "forthcoming"}
@@ -280,6 +281,8 @@ if (splitdate[2] == (year-2000) &&  (splitdate[1] == month) && (splitdate[0] < d
 
 if ((visitis != "forthcoming") && (visitis != "pastyear")) {visitis = "old"};
 
+if (visitdate != "") {visitinfo = "Last Visited (mm/dd/yyyy): "+splitdate[1]+"/"+splitdate[0]+"/"+splitdate[2]};
+  
 // if type then icon color/letter here
 if (visitis == "forthcoming") {
     iconcolor = "#df004e";
@@ -307,7 +310,8 @@ var thisicon = L.MakiMarkers.icon({icon: icontext, color: iconcolor, size: icons
     var marker = L.marker([latitude, longitude], {icon: thisicon})
               .bindPopup('<strong>'+name+'<br>'
                     +'Phone: '+phone+'<br>'
-                    +'Address: '+address+'<br>');
+                    +'Address: '+address+'<br>'
+                    +visitinfo+'<br>');
 
 console.log(latitude," ",longitude," ",name);
 //layer if statements              

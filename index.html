@@ -271,17 +271,17 @@ var visitinfo = "";
 //before a year, within a year, or forthcoming
 //forthcoming
 if (splitdate[2] > (year-2000)) {visitis = "forthcoming"}
-  else if ((splitdate[2] == (year-2000)) && (splitdate[1] > month)) {visitis = "forthcoming"}
-  else if ((splitdate[2] == (year-2000)) && (splitdate[1] == month) && (splitdate[0] >= day)) {visitis = "forthcoming" };
+  else if ((splitdate[2] == (year-2000)) && (splitdate[0] > month)) {visitis = "forthcoming"}
+  else if ((splitdate[2] == (year-2000)) && (splitdate[0] == month) && (splitdate[1] >= day)) {visitis = "forthcoming" };
 
-if (splitdate[2] == (year-2000) &&  (splitdate[1] == month) && (splitdate[0] < day)) {visitis = "pastyear"}
-  else if ((splitdate[2] == (year-2000)) && (splitdate[1] < month)) {visitis = "pastyear"}
-  else if ((splitdate[2] < (year-2000)) && (splitdate[1] > month)) {visitis = "pastyear" }
-  else if ((splitdate[2] < (year-2000)) && (splitdate[1] == month) && (splitdate[0] >= day)) {visitis = "pastyear" };
+if (splitdate[2] == (year-2000) &&  (splitdate[0] == month) && (splitdate[1] < day)) {visitis = "pastyear"}
+  else if ((splitdate[2] == (year-2000)) && (splitdate[0] < month)) {visitis = "pastyear"}
+  else if ((splitdate[2] < (year-2000)) && (splitdate[0] > month)) {visitis = "pastyear" }
+  else if ((splitdate[2] < (year-2000)) && (splitdate[0] == month) && (splitdate[1] >= day)) {visitis = "pastyear" };
 
 if ((visitis != "forthcoming") && (visitis != "pastyear")) {visitis = "old"};
 
-if (visitdate != "") {visitinfo = "Last Visited (mm/dd/yyyy): "+splitdate[1]+"/"+splitdate[0]+"/"+splitdate[2]};
+if (visitdate != "") {visitinfo = "Last Visited: "+splitdate[0]+"/"+splitdate[1]+"/"+splitdate[2]};
   
 // if type then icon color/letter here
 if (visitis == "forthcoming") {
